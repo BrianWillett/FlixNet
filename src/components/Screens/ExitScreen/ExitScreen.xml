@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="ExitScreen" extends="Group">
+    <script type="text/brightscript" uri="ExitScreen.brs" />
+    <interface>
+        <function name="onOpen"/>
+    </interface>
+    <children>
+        <Rectangle id="bg" width="1920" height="1080" color="#333333" />
+        <Label id="areYouSure" width="1920" translation="[0,300]" horizAlign="center" text="Are you sure you want to exit?">
+            <Font role="font" size="50" uri="pkg:/assets/fonts/Lato-Regular.ttf" />
+        </Label>
+        <LayoutGroup id="buttonGroup" translation="[760,400]" layoutDirection="horiz" >
+            <Button id="exit" bgWidth="200" bgHeight="75" bgColor="#112244" text="Exit" textColor="#FFFFFF" />
+            <Button id="cancel" bgWidth="200" bgHeight="75" bgColor="#112244" text="Cancel" textColor="#FFFFFF" />
+        </LayoutGroup>
+    </children>
+</component>

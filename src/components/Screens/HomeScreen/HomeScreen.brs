@@ -103,12 +103,14 @@ sub changeButtonFocus(btnToFocus = invalid)
             m.backdrop.watchTxtColor = "#FFFFFF"
         end if
         btnToFocus.setFocus(true)
+        m.lastFocused = btnToFocus
     else
         m.backdrop.watchBtnColor = m.buttonUnfocusColor
         m.backdrop.watchTxtColor = "#FFFFFF"
         m.backdrop.infoBtnColor = m.buttonUnfocusColor
         m.backdrop.infoTxtColor = "#FFFFFF"
         m.list.setFocus(true)
+        m.lastFocused = m.list
     end if
 end sub
 
@@ -217,6 +219,8 @@ function onKeyEvent(key as string, press as boolean) as boolean
                 closeVideo()
             else if m.watchBtn.isInFocusChain() or m.infoBtn.isInFocusChain()
                 changeButtonFocus()
+            else if m.list.isInFocusChain()
+                m.global.screenManager.callFunc("goBack",{})
             end if
             handled = true
         end if
