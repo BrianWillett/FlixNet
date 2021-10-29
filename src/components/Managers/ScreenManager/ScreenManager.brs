@@ -71,6 +71,6 @@ sub goBack(params)
             goToScreen({type: m.prevScreens.pop().id})
         end if
     else
-        goToScreen({type:"HomeScreen"})
+        goToScreen({type:"ExitScreen"})
     end if
 end sub
