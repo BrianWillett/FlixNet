@@ -3,7 +3,7 @@
     <script type="text/brightscript" uri="ScreenManager.brs" />
     <interface>
         <function name="goToScreen"/>
-        <!-- <function name="goBack"/> -->
+        <function name="goBack"/>
     </interface>
     <children>
         
