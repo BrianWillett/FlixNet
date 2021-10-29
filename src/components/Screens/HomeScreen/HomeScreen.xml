@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="HomeScreen" extends="Group">
+    <script type="text/brightscript" uri="HomeScreen.brs" />
+    <script type="text/brightscript" uri="pkg:/source/utils.brs" />
+    <interface>
+        <function name="onOpen"/>
+        <field id="backDropImage" type="string" alias="backdrop.imageUri" />
+    </interface>
+    <children>
+        <Backdrop id="backdrop" />
+        <ZoomRowList id="genreList" useDefaultAspectRatio="[true]" rowItemAspectRatio="[.75]" itemComponentName="MoviesListItem" spacingAfterRow="50" showRowTitle="[true]" rowItemHeight="350" rowItemZoomHeight="350" spacingAfterRowItem="[30]" translation="[100,550]" />
+        <Video id="player" visible="false" />
+    </children>
+</component>

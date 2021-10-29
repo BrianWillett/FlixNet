@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Backdrop" extends="Group">
+    <script type="text/brightscript" uri="Backdrop.brs" />
+    <interface>
+        <field id="imageUri" type="string" alias="poster.uri" />
+        <field id="title" type="string" alias="movieTitle.text" />
+        <field id="releaseDate" type="string" onChange="formatReleaseDate" />
+        <field id="scoreText" type="string" alias="score.text" />
+        <field id="description" type="string" alias="movieDesc.text" />
+        <field id="watchBtnColor" type="string" alias="watch.bgColor" />
+        <field id="watchTxtColor" type="string" alias="watch.textColor" />
+        <field id="infoBtnColor" type="string" alias="info.bgColor" />
+        <field id="infoTxtColor" type="string" alias="info.textColor" />
+    </interface>
+    <children>
+        <Poster id="poster" width="1920" height="780" />
+        <Poster id="gradient" width="1920" height="1080" uri="pkg:/assets/images/overlay_showcontent_darken.png"/>
+        <Group id="group" translation="[100,200]">
+            <Label id="movieTitle" translation="[0,50]" >
+                <Font role="font" size="60" uri="pkg:/assets/fonts/BebasNeue-Regular.ttf" />
+            </Label>
+            <Label id="released" translation="[0,115]">
+                <Font role="font" size="27" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+            </Label>
+            <Label id="score" translation="[90,117]">
+                <Font role="font" size="26" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+            </Label>
+            <Label id="released" translation="[0,115]">
+                <Font role="font" size="27" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+            </Label>
+            <Label id="movieDesc" translation="[0,152]" width="850" height="150" wrap="true">
+                <Font role="font" size="26" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+            </Label>
+            <LayoutGroup id="buttonGroup" layoutDirection="horiz" itemSpacings="[20]" translation="[423,290]">
+                <Button id="watch" bgWidth="200" bgHeight="75" bgColor="#112244" text="Watch" textColor="#FFFFFF" />
+                <Button id="info" bgWidth="200" bgHeight="75" bgColor="#112244" text="More Info" textColor="#FFFFFF" />
+            </LayoutGroup>
+        </Group>
+    </children>
+</component>

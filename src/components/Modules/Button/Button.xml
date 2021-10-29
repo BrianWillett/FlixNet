@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Button" extends="Group">
+    <script type="text/brightscript" uri="Button.brs" />
+    <interface>
+        <field id="bgWidth" type="integer" onChange="adjustWidth" />
+        <field id="bgHeight" type="integer" onChange="adjustHeight" />
+        <field id="bgColor" type="string" alias="bg.blendColor" />
+        <field id="text" type="string" alias="label.text" />
+        <field id="textColor" type="string" alias="label.color" />
+        <field id="action" type="string"/>
+        <field id="execute" type="boolean" onChange="handleAction" />
+
+    </interface>
+    <children>
+        <Poster id="bg" uri="pkg:/assets/images/btn.9.png" />
+        <Label id="label" horizAlign="center" vertAlign="center"/>
+    </children>
+</component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MoviesTask" extends="CoreTask">
+    <script type="text/brightscript" uri="MoviesTask.brs" />
+    <script type="text/brightscript" uri="MoviesTask.Genre.brs" />
+    <script type="text/brightscript" uri="MoviesTask.Specific.brs" />
+    <script type="text/brightscript" uri="MoviesTask.IMDBTasks.brs" />
+    <script type="text/brightscript" uri="pkg:/source/utils.brs"/>
+</component>

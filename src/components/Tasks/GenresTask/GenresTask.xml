@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="GenresTask" extends="CoreTask">
+    <script type="text/brightscript" uri="GenresTask.brs" />
+    <script type="text/brightscript" uri="GenresTask.Movies.brs" />
+    <script type="text/brightscript" uri="pkg:/source/utils.brs" />
+</component>

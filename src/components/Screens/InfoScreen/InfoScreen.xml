@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="InfoScreen" extends="Group">
+    <script type="text/brightscript" uri="InfoScreen.brs" />
+    <interface>
+        <function name="onOpen"/>
+        <field id="description" type="string" alias="movieDesc.text" />
+        <field id="rating" type="string" alias="score.text" />
+        <field id="releaseDate" type="string" alias="released.text" />
+        <field id="SDPosterURL" type="string" alias="poster.uri" />
+        <field id="HDPosterURL" type="string" alias="moviePoster.uri" />
+        <field id="title" type="string" alias="movieTitle.text" />
+    </interface>
+    <children>
+        <Poster id="poster" width="1920" height="1080" />
+        <Poster id="gradient" width="1920" height="1080" uri="pkg:/assets/images/overlay_brand_darken.png"/>
+        <Poster id="moviePoster" width="500" height="700" translation="[1350,50]" />
+        <Button id="watch" bgWidth="200" bgHeight="75" bgColor="#FFFFFF" text="Watch" textColor="#000000" translation="[1500,775]" />
+        <Label id="movieTitle" translation="[100,50]" >
+            <Font role="font" size="80" uri="pkg:/assets/fonts/BebasNeue-Regular.ttf" />
+        </Label>
+        <Label id="released" translation="[100,140]">
+            <Font role="font" size="27" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+        </Label>
+        <Label id="score" translation="[180,140]">
+            <Font role="font" size="27" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+        </Label>
+        <Label id="movieDesc" translation="[100,600]" width="850" height="450" wrap="true" vertAlign="center">
+            <Font role="font" size="26" uri="pkg:/assets/fonts/Lato-Bold.ttf" />
+        </Label>
+    </children>
+</component>

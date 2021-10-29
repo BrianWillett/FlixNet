@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="CoreTask" extends="Task">
+    <script type="text/brightscript" uri="CoreTask.brs" />
+    <interface>
+        <field id="params" type="assocarray" />
+        <field id="response" type="assocarray" />
+    </interface>
+</component>
