@@ -39,7 +39,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             
             handled = false
         else if "back" = key
-            m.global.screenManager.callFunc("goBack",{})
+            m.global.screenManager.callFunc("goBack",{closeCurrent: true})
             handled = true
         end if
     end if

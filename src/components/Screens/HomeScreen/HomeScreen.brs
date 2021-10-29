@@ -13,6 +13,7 @@ sub init()
     m.movieSelectedMovie = invalid
     m.trailerPlayer = m.top.findNode("player")
     m.playerState = "stopped"
+    m.lastFocused = invalid
 end sub
 
 
@@ -20,6 +21,12 @@ sub onOpen(params)
     m.trailerPlayer.visible = false
     if invalid <> params and invalid <> params.data
         displayGenres(params.data)
+    else if invalid <> m.list and invalid <> m.list.content
+        if invalid <> m.lastFocused
+            m.lastFocused.setFocus(true)
+        else
+            m.list.setFocus(true)
+        end if
     end if
 end sub
 
@@ -201,6 +208,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             if m.watchBtn.isInFocusChain()
                 runTask("MoviesTask")
             else if m.infoBtn.isInFocusChain()
+                m.lastFocused = m.infoBtn
                 m.global.screenManager.callFunc("goToScreen",{type:"InfoScreen",data:m.movieSelectedMovie})
             end if
             handled = true
