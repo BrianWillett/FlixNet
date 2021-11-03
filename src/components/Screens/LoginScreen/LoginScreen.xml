@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="LoginScreen" extends="Group">
+    <script type="text/brightscript" uri="LoginScreen.brs" />
+    <script type="text/brightscript" uri="pkg:/source/utils.brs" />
+    <interface>
+        <function name="onOpen"/>
+    </interface>
+    <children>
+        <Rectangle id="bg" width="1920" height="1080" color="#000" />
+        <Label id="title" text="FlixNet" color="#FF1122" width="1920" horizAlign="center" translation="[0,100]">
+            <font role="font" size="100" uri="pkg:/assets/fonts/BebasNeue-Regular.ttf" />
+        </Label>
+        <LayoutGroup id="buttonGroup" translation="[200,350]" layoutDirection="vert" >
+            <Button id="signIn" bgWidth="200" bgHeight="75" bgColor="#112244" text="Sign In" textColor="#FFFFFF" />
+            <Button id="signUp" bgWidth="200" bgHeight="75" bgColor="#112244" text="Sign Up" textColor="#FFFFFF" />
+        </LayoutGroup>
+        <Group id="loginGroup" translation="[200,350]" visible="false">
+            <FillableField id="email" fieldName="E-mail" focused="false" translation="[0,0]" />
+            <FillableField id="password" fieldName="Password" focused="false" translation="[0,100]" />
+            <Button id="logIn" bgWidth="200" bgHeight="75" bgColor="#112244" text="Log In" textColor="#FFFFFF" translation="[0,200]"/>
+        </Group>
+        <StandardKeyboardDialog id="keyboard" translation="[200,300]" visible="false" />
+        <StandardKeyboardDialog id="keyboardpass" translation="[200,300]" visible="false" />
+
+    </children>
+</component>

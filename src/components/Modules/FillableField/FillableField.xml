@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="FillableField" extends="Group">
+    <script type="text/brightscript" uri="FillableField.brs" />
+    <interface>
+        <field id="fieldName" type="string" alias="name.text" />
+        <field id="focused" type="boolean" onChange="handleFocus" value="false" />
+        <field id="errored" type="boolean" onChange="displayError" value="false" />
+    </interface>
+    <children>
+        <label id="name" width="700">
+            <font role="font" size="32" uri="pkg:/assets/fonts/Lato-Regular.ttf" />
+        </label>
+        <label id="underscore" width="700" translation="[0,15]" text="_____________________________________________________" >
+            <font role="font" size="32" uri="pkg:/assets/fonts/Lato-Regular.ttf" />
+        </label>
+        <label id="error" width="700" color="#FF0000" visible="false" translation="[5,50]">
+            <font role="font" size="28" uri="pkg:/assets/fonts/Lato-Regular.ttf" />
+        </label>
+    </children>
+</component>
