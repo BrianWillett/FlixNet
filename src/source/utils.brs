@@ -13,3 +13,8 @@ function getValueFromKey(key)
     end if
     return value
 end function
+
+function removeWhiteSpace(theString)
+    rgx = createObject("roRegex", " ", "i")
+    return rgx.ReplaceAll(theString, "")
+end function

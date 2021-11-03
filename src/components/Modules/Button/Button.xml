@@ -9,6 +9,7 @@
         <field id="textColor" type="string" alias="label.color" />
         <field id="action" type="string"/>
         <field id="execute" type="boolean" onChange="handleAction" />
+        <field id="focused" type="boolean" onChange="handleFocus" value="false" />
 
     </interface>
     <children>
