@@ -50,7 +50,11 @@ sub onResponseReceived(event)
             genres: m.genres,
             movies: m.movies
           }
-          m.global.screenManager.callFunc("goToScreen",{type:"LoginScreen", data:m.movies})
+          if checkLoggedIn()
+            m.global.screenManager.callFunc("goToScreen",{type:"HomeScreen", data:m.movies})
+          else
+            m.global.screenManager.callFunc("goToScreen",{type:"LoginScreen", data:m.movies})
+          end if
         else
           getMoviesForGenres(m.fetchedCount)
         end if

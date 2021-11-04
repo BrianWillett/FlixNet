@@ -18,3 +18,20 @@ function removeWhiteSpace(theString)
     rgx = createObject("roRegex", " ", "i")
     return rgx.ReplaceAll(theString, "")
 end function
+
+function logIn()
+    authSec = CreateObject("roRegistrySection", "Authentication")
+    authSec.write("LoggedIn","true")
+    authSec.flush()
+    return true
+end function
+
+function checkLoggedIn()
+    authSec = createObject("roRegistrySection","Authentication")
+    if authSec.Exists("LoggedIn")
+        if "true" = authSec.read("LoggedIn")
+            return true
+        end if
+    end if
+    return false
+end function
