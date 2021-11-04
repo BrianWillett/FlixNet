@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="NavBar" extends="Group">
+    <script type="text/brightscript" uri="NavBar.brs" />
+    <interface>
+        <field id="navWidth" type="boolean" alias="overhang.width" />
+        <field id="expanded" type="boolean" onChange="handleExpansion" />
+        <field id="navBg" type="string" alias="overhang.uri" />
+        <field id="homeColor" type="string" alias="home.blendColor" />
+        <field id="moviesColor" type="string" alias="movies.blendColor" />
+        <field id="tvColor" type="string" alias="tv.blendColor" />
+        <field id="settingsColor" type="string" alias="settings.blendColor" />
+        <field id="dotColor" type="string" alias="dot.color" />
+        <field id="dotTranslation" type="array" alias="dot.translation" />
+        <field id="labelsVis" type="boolean" alias="labelGroup.visible" />
+        <field id="titleVis" type="boolean" alias="title.visible" />
+
+    </interface>
+    <children>
+        <Group id="masterGroup" translation="[20,0]">
+            <Poster id="overhang" width="100" height="1080" uri="pkg:/assets/images/navigation/collapsed.png" />
+            <Label id="title" text="FlixNet" color="#FF1122" width="180" horizAlign="center" translation="[0,50]" visible="false">
+                <font role="font" size="50" uri="pkg:/assets/fonts/BebasNeue-Regular.ttf" />
+            </Label>
+            <Group id="iconGroup" translation="[0,100]">
+                <Poster id="home" width="40" height="40" uri="pkg:/assets/images/navigation/icons/home.png" blendColor="#555555" translation="[17,200]"/>
+                <LayoutGroup id="isCollapsed" translation="[20,280]" layoutDirection="vert" itemSpacings="[25,35]">
+                    <Poster id="movies" width="40" height="40" uri="pkg:/assets/images/navigation/icons/movies.png" blendColor="#555555" />
+                    <Poster id="tv" width="40" height="40" uri="pkg:/assets/images/navigation/icons/tv.png" blendColor="#555555" />
+                    <Poster id="settings" width="40" height="40" uri="pkg:/assets/images/navigation/icons/settings.png" blendColor="#555555" />
+                </LayoutGroup>
+                <Rectangle id="dot" width="5" height="5" translation="[14,222]" color="#555555" />
+                <Group id="labelGroup" visible="false" translation="[10,-11]">
+                    <Label id="homeLabel" text="Home" color="#FFFFFF" translation="[64,222]" >
+                        <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
+                    </Label>
+                    <Label id="moviesLabel" text="Movies" color="#FFFFFF" translation="[64,294]" >
+                        <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
+                    </Label>
+                    <Label id="tvLabel" text="Television" color="#FFFFFF" translation="[64,369]" >
+                        <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
+                    </Label>
+                    <Label id="settingsLabel" text="Settings" color="#FFFFFF" translation="[64,439]" >
+                        <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
+                    </Label>
+                </Group>
+           </Group>
+        </Group>
+    </children>
+</component>

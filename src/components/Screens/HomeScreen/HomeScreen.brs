@@ -6,6 +6,7 @@ sub init()
     m.list.observeField("rowItemFocused","onFocus")
     m.watchBtn = m.top.findNode("watch")
     m.infoBtn = m.top.findNode("info")
+    m.navBar = m.top.findNode("NavBar")
     m.btnFocusColor = "#FFFFFF"
     m.buttonUnfocusColor = "#112244"
     m.movieSelectedId = invalid
@@ -192,6 +193,11 @@ sub closeVideo()
     m.watchBtn.setFocus(true)
 end sub
 
+sub focusNavBar()
+    m.navBar.setFocus(true)
+    m.navBar.expanded= true
+end sub
+
 function onKeyEvent(key as string, press as boolean) as boolean
     handled = false
     if press
@@ -200,6 +206,14 @@ function onKeyEvent(key as string, press as boolean) as boolean
             handled = true
         else if "right" = key
             if m.watchBtn.isInFocusChain() then changeButtonFocus(m.infoBtn)
+            if m.navBar.isInFocusChain()
+                if invalid <> m.lastFocused
+                    m.lastFocused.setFocus(true)
+                else
+                    m.list.setFocus(true)
+                end if
+                m.navBar.expanded = false
+            end if
             handled = true
         else if "up" = key
             handled = true
@@ -221,6 +235,11 @@ function onKeyEvent(key as string, press as boolean) as boolean
                 changeButtonFocus()
             else if m.list.isInFocusChain()
                 m.global.screenManager.callFunc("goBack",{})
+            end if
+            handled = true
+        else if "options" = key
+            if not m.navBar.isInFocusChain()
+                focusNavBar()
             end if
             handled = true
         end if
