@@ -4,10 +4,7 @@ sub init()
     m.focusColor = "#FFFFFF"
     m.unfocusColor = "#555555"
     m.index = 0
-    m.homeLabel = m.top.findNode("homeLabel")
-    m.moviesLabel = m.top.findNode("moviesLabel")
-    m.tvLabel = m.top.findNode("tvLabel")
-    m.settingsLabel = m.top.findNode("settingsLabel")
+    m.labelGroup = m.top.findNode("labelGroup")
 end sub
 
 sub handleExpansion()
@@ -37,31 +34,27 @@ end sub
 
 sub changeIndex(delta)
     m.index += delta
+    children = m.labelGroup.getChildren(-1,0)
+    numOptions = children.count() - 1
 
     if 0 > m.index then m.index = 0
-    if 3 < m.index then m.index = 3
+    if numOptions < m.index then m.index = 3
 
-    if 0 = m.index
-        m.top.dotTranslation = [14,222]
-        highlightLabel(m.homeLabel)
-    else if 1 = m.index
-        m.top.dotTranslation = [14, 294]
-        highlightLabel(m.moviesLabel)
-    else if 2 = m.index
-        m.top.dotTranslation = [14,369]
-        highlightLabel(m.tvLabel)
-    else if 3 = m.index
-        m.top.dotTranslation = [14,439]
-        highlightLabel(m.settingsLabel)
-    end if
+    yValue = 205
+    m.top.dotTranslation = [10, (yValue + (m.index * 75))]
+    highlightLabel(m.index)
 end sub
 
 sub highlightLabel(labelToHighlight)
-    m.homeLabel.color = m.focusColor
-    m.moviesLabel.color = m.focusColor
-    m.tvLabel.color = m.focusColor
-    m.settingsLabel.color = m.focusColor
-    labelToHighlight.color = "#FF4422"
+    children = m.labelGroup.getChildren(-1,0)
+    for i = 0 to children.count() - 1 step 1
+        if labelToHighlight = i
+            children[i].color = "#FF4422"
+            children[i].setFocus(true)
+        else
+            children[i].color = m.focusColor
+        end if
+    end for
 end sub
 
 function onKeyEvent(key as string, press as boolean) as boolean
@@ -74,11 +67,13 @@ function onKeyEvent(key as string, press as boolean) as boolean
             changeIndex(1)
             handled = true
         else if "OK" = key
-            
-            handled = true
-        else if "back" = key
-            
-            handled = true
+            currScreen = m.global.screenManager.callFunc("getCurrentScreen")
+            if m.labelGroup.focusedChild.id <> currScreen.id
+                m.global.screenManager.callFunc("goToScreen",{type:m.labelGroup.focusedChild.id})
+                handled = true
+            else
+                handled = false
+            end if
         end if
     end if
     return handled

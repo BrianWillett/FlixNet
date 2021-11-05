@@ -22,27 +22,29 @@
                 <font role="font" size="50" uri="pkg:/assets/fonts/BebasNeue-Regular.ttf" />
             </Label>
             <Group id="iconGroup" translation="[0,100]">
-                <Poster id="home" width="40" height="40" uri="pkg:/assets/images/navigation/icons/home.png" blendColor="#555555" translation="[17,200]"/>
-                <LayoutGroup id="isCollapsed" translation="[20,280]" layoutDirection="vert" itemSpacings="[25,35]">
+                <LayoutGroup id="isCollapsed" translation="[22,200]" layoutDirection="vert" itemSpacings="[35]">
+                    <Poster id="home" width="40" height="40" uri="pkg:/assets/images/navigation/icons/home.png" blendColor="#555555"/>
                     <Poster id="movies" width="40" height="40" uri="pkg:/assets/images/navigation/icons/movies.png" blendColor="#555555" />
                     <Poster id="tv" width="40" height="40" uri="pkg:/assets/images/navigation/icons/tv.png" blendColor="#555555" />
                     <Poster id="settings" width="40" height="40" uri="pkg:/assets/images/navigation/icons/settings.png" blendColor="#555555" />
                 </LayoutGroup>
-                <Rectangle id="dot" width="5" height="5" translation="[14,222]" color="#555555" />
-                <Group id="labelGroup" visible="false" translation="[10,-11]">
-                    <Label id="homeLabel" text="Home" color="#FFFFFF" translation="[64,222]" >
+                <Label id="dot" text="*" color="#555555" height="40" vertAlign="center" translation="[10,205]" >
+                    <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
+                </Label>
+                <LayoutGroup id="labelGroup" visible="false" translation="[76,202]" layoutDirection="vert" itemSpacings="[35]" >
+                    <Label id="HomeScreen" text="Home" color="#FFFFFF" height="40" vertAlign="center" >
                         <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
                     </Label>
-                    <Label id="moviesLabel" text="Movies" color="#FFFFFF" translation="[64,294]" >
+                    <Label id="MoviesScreen" text="Movies" color="#FFFFFF" height="40" vertAlign="center" >
                         <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
                     </Label>
-                    <Label id="tvLabel" text="Television" color="#FFFFFF" translation="[64,369]" >
+                    <Label id="TVScreen" text="Television" color="#FFFFFF" height="40" vertAlign="center" >
                         <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
                     </Label>
-                    <Label id="settingsLabel" text="Settings" color="#FFFFFF" translation="[64,439]" >
+                    <Label id="SettingsScreen" text="Settings" color="#FFFFFF" height="40" vertAlign="center" >
                         <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
                     </Label>
-                </Group>
+                </LayoutGroup>
            </Group>
         </Group>
     </children>

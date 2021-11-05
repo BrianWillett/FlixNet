@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="TVTask" extends="CoreTask">
+    <script type="text/brightscript" uri="TVTask.brs" />
+    <script type="text/brightscript" uri="TVTask.Popular.brs" />
+    <script type="text/brightscript" uri="pkg:/source/utils.brs" />
+</component>

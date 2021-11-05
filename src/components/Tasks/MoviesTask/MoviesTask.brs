@@ -8,6 +8,8 @@ sub doWork(params)
             m.top.response = fetchIMDBVideos(params)
         else if "fetchMovieTrailer" = params.reqType and invalid <> params.imdb_id
             m.top.response = fetchIMDBTrailer(params)
+        else if "moviesByPopularity" = params.reqType
+            m.top.response = fetchMoviesByPopularity()
         end if
     end if
 end sub

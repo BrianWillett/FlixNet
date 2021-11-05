@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="SettingsScreen" extends="Group">
+    <script type="text/brightscript" uri="SettingsScreen.brs" />
+    <interface>
+        <function name="onOpen"/>
+    </interface>
+    <children>
+        <Label text="SettingsScreen" translation="[200,200]" />
+        <NavBar id="navbar" />
+    </children>
+</component>
