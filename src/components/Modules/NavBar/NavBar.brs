@@ -5,6 +5,7 @@ sub init()
     m.unfocusColor = "#555555"
     m.index = 0
     m.labelGroup = m.top.findNode("labelGroup")
+    m.icons = m.top.findNode("isCollapsed")
 end sub
 
 sub handleExpansion()
@@ -12,24 +13,25 @@ sub handleExpansion()
     if m.top.expanded
         m.top.navWidth = 400
         m.top.navBG = m.expand
-        m.top.homeColor = m.focusColor
-        m.top.moviesColor = m.focusColor
-        m.top.tvColor = m.focusColor
-        m.top.settingsColor = m.focusColor
+        changeIconColor(m.focusColor)
         m.top.dotColor = m.focusColor
         m.top.labelsVis = true
         m.top.titleVis = true
     else
         m.top.navWidth = 100
         m.top.navBG = m.collapse
-        m.top.homeColor = m.unfocusColor
-        m.top.moviesColor = m.unfocusColor
-        m.top.tvColor = m.unfocusColor
-        m.top.settingsColor = m.unfocusColor
+        changeIconColor(m.unfocusColor)
         m.top.dotColor = m.unfocusColor
         m.top.labelsVis = false
         m.top.titleVis = false
     end if
+end sub
+
+sub changeIconColor(color)
+    children = m.icons.getChildren(-1,0)
+    for i = 0 to children.count() -1 step 1
+        children[i].blendColor = color
+    end for
 end sub
 
 sub changeIndex(delta)
@@ -69,7 +71,12 @@ function onKeyEvent(key as string, press as boolean) as boolean
         else if "OK" = key
             currScreen = m.global.screenManager.callFunc("getCurrentScreen")
             if m.labelGroup.focusedChild.id <> currScreen.id
-                m.global.screenManager.callFunc("goToScreen",{type:m.labelGroup.focusedChild.id})
+                if "LoginScreen" = m.labelGroup.focusedChild.id
+                    logOut()
+                    m.global.screenManager.callFunc("goToScreen",{type:m.labelGroup.focusedChild.id,closeCurrent: true})
+                else
+                    m.global.screenManager.callFunc("goToScreen",{type:m.labelGroup.focusedChild.id})
+                end if
                 handled = true
             else
                 handled = false

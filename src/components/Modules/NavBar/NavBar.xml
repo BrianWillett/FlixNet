@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="NavBar" extends="Group">
     <script type="text/brightscript" uri="NavBar.brs" />
+    <script type="text/brightscript" uri="pkg:/source/utils.brs" />
     <interface>
         <field id="navWidth" type="boolean" alias="overhang.width" />
         <field id="expanded" type="boolean" onChange="handleExpansion" />
@@ -27,6 +28,7 @@
                     <Poster id="movies" width="40" height="40" uri="pkg:/assets/images/navigation/icons/movies.png" blendColor="#555555" />
                     <Poster id="tv" width="40" height="40" uri="pkg:/assets/images/navigation/icons/tv.png" blendColor="#555555" />
                     <Poster id="settings" width="40" height="40" uri="pkg:/assets/images/navigation/icons/settings.png" blendColor="#555555" />
+                    <Poster id="logout" width="40" height="40" uri="pkg:/assets/images/navigation/icons/logout.png" blendColor="#555555" />
                 </LayoutGroup>
                 <Label id="dot" text="*" color="#555555" height="40" vertAlign="center" translation="[10,205]" >
                     <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
@@ -42,6 +44,9 @@
                         <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
                     </Label>
                     <Label id="SettingsScreen" text="Settings" color="#FFFFFF" height="40" vertAlign="center" >
+                        <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
+                    </Label>
+                    <Label id="LoginScreen" text="Logout" color="#FFFFFF" height="40" vertAlign="center" >
                         <font role="font" size="25" uri="pkg:/assets/fonts/Lato-Regular.ttf"/>
                     </Label>
                 </LayoutGroup>

@@ -35,3 +35,13 @@ function checkLoggedIn()
     end if
     return false
 end function
+
+sub logOut()
+    authSec = createObject("roRegistrySection","Authentication")
+    if authSec.Exists("LoggedIn")
+        if "true" = authSec.read("LoggedIn")
+            authSec.Delete("LoggedIn")
+            authSec.flush()
+        end if
+    end if
+end sub
