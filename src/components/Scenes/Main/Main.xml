@@ -6,5 +6,6 @@
   </interface>
   <children>
     <NavBar id="navbar" />
+    <Spinner id="spinner" />
   </children>
 </component>

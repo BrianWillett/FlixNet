@@ -2,7 +2,7 @@
 <component name="Backdrop" extends="Group">
     <script type="text/brightscript" uri="Backdrop.brs" />
     <interface>
-        <field id="imageUri" type="string" alias="poster.uri" />
+        <field id="imageUri" type="string" alias="poster.uri" onChange="loadPoster" />
         <field id="title" type="string" alias="movieTitle.text" />
         <field id="releaseDate" type="string" onChange="formatReleaseDate" />
         <field id="scoreText" type="string" alias="score.text" />
@@ -14,7 +14,8 @@
     </interface>
     <children>
         <Poster id="poster" width="1920" height="780" />
-        <Poster id="gradient" width="1920" height="1080" uri="pkg:/assets/images/overlay_showcontent_darken.png"/>
+        <Spinner id="spinner" spinnerTranslation="[885,265]" visible="false"/>
+        <Poster id="gradient" width="1920" height="1080" uri="pkg:/assets/images/dim.png"/>
         <Group id="group" translation="[100,200]">
             <Label id="movieTitle" translation="[0,50]" >
                 <Font role="font" size="60" uri="pkg:/assets/fonts/BebasNeue-Regular.ttf" />

@@ -15,10 +15,13 @@ sub init()
     m.trailerPlayer = m.top.findNode("player")
     m.playerState = "stopped"
     m.lastFocused = invalid
+    m.spinner = m.top.findNode("spinner")
 end sub
 
 
 sub onOpen(params)
+    m.spinner.control = "start"
+    m.spinner.status = "Loading Profile..."
     m.trailerPlayer.visible = false
     if invalid <> params and invalid <> params.data
         displayGenres(params.data)
@@ -49,13 +52,18 @@ sub displayGenres(genres)
                     if invalid <> movies[i].vote_average then movie.rating = movies[i].vote_average.toStr()
                     if invalid <> movies[i].overview then movie.description = movies[i].overview
                     if invalid <> movies[i].poster_path then movie.HDPosterURL = getValueFromKey("mini_poster_base_url") +  movies[i].poster_path
-                    if invalid <> movies[i].backdrop_path then movie.SDPosterURL = getValueFromKey("backdrop_poster_base_url") + movies[i].backdrop_path
+                    if invalid <> movies[i].backdrop_path
+                        movie.SDPosterURL = getValueFromKey("backdrop_poster_base_url") + movies[i].backdrop_path
+                    else
+                        movie.SDPosterURL = "pkg:/assets/images/blankscreen.png"
+                    end if
                     rowNode.appendChild(movie)
                 end if
             end for
             topNode.appendChild(rowNode)
         end if
     end for
+    m.spinner.control = "stop"
     m.list.content = topNode
     m.list.visible = true
     m.list.setFocus(true)
@@ -89,7 +97,11 @@ function addPopularToTop(topNode, genres)
                     movie.description = "No description given"
                 end if
                 if invalid <> movies[i].poster_path then movie.HDPosterURL = getValueFromKey("mini_poster_base_url") +  movies[i].poster_path
-                if invalid <> movies[i].backdrop_path then movie.SDPosterURL = getValueFromKey("backdrop_poster_base_url") + movies[i].backdrop_path
+                if invalid <> movies[i].backdrop_path
+                    movie.SDPosterURL = getValueFromKey("backdrop_poster_base_url") + movies[i].backdrop_path
+                else
+                    movie.SDPosterURL = "pkg:/assets/images/blankscreen.png"
+                end if
                 rowNode.appendChild(movie)
             end if
         end for
@@ -158,6 +170,8 @@ end sub
 sub runTask(taskToRun, imdb_id = invalid)
     theParams = invalid
     if "MoviesTask" = taskToRun
+        m.spinner.control = "start"
+        m.spinner.status = "Fetching Video..."
         theParams = {
             reqType: "specificMovie",
             movieId: m.movieSelectedId.toStr()
@@ -216,7 +230,7 @@ sub playVideo(url)
     m.trailerPlayer.content = trailerSetup
 
     m.trailerPlayer.observeField("state", "updateState")
-
+    m.spinner.control = "stop"
     m.trailerPlayer.control = "play"
     m.trailerPlayer.visible = true
     m.trailerPlayer.setFocus(true)

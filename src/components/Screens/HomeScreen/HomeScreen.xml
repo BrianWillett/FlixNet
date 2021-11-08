@@ -11,5 +11,6 @@
         <ZoomRowList id="genreList" useDefaultAspectRatio="[true]" rowItemAspectRatio="[.75]" itemComponentName="MoviesListItem" spacingAfterRow="50" showRowTitle="[true]" rowItemHeight="350" rowItemZoomHeight="350" spacingAfterRowItem="[30]" translation="[150,550]" />
         <NavBar id="navbar" />
         <Video id="player" visible="false" />
+        <Spinner id="spinner" />
     </children>
 </component>

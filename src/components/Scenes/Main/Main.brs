@@ -8,10 +8,13 @@ sub init()
   m.navBar.visible = false
   lstF = createObject("roSGNode","Node")
   m.global.addFields({lastFocused: lstF})
+  m.spinner = m.top.findNode("spinner")
   getMovieGenres()
 end sub
 
 sub getMovieGenres()
+  m.spinner.control = "start"
+  m.spinner.status = "Loading Genres...."
   m.genreCount = 0
   m.fetchedCount = 0
   fetch = createObject("roSGNode","GenresTask")
@@ -23,6 +26,7 @@ sub getMovieGenres()
 end sub
 
 sub getVideosForGenres(index,theTask)
+    m.spinner.status = "Loading Videos...."
     fetch = createObject("roSGNode",theTask)
     fetch.unobserveField("response")
     if "Popular Television" <> m.genres[index].name and "Popular Movies" <> m.genres[index].name
@@ -47,6 +51,7 @@ sub onResponseReceived(event)
     response = event.getData()
     if invalid <> response
       if invalid <> response.genres
+        m.spinner.status = "Creating Lists...."
         m.genres.clear()
         m.genres = response.genres
         m.genres.push({id:1,name:"Popular Movies"})
@@ -58,6 +63,7 @@ sub onResponseReceived(event)
             getVideosForGenres(m.fetchedCount, theTask)
           end if
       else if invalid <> response.results
+        m.spinner.status = "Populating Lists...."
         genre = {
           "genreId":m.genres[m.fetchedCount].id,
           "genreName": m.genres[m.fetchedCount].name,
@@ -70,6 +76,7 @@ sub onResponseReceived(event)
             genres: m.genres,
             movies: m.movies
           }
+          m.spinner.status = "Checking Login...."
           if checkLoggedIn()
             m.navBar.visible = true
             m.global.screenManager.callFunc("goToScreen",{type:"HomeScreen", data:m.movies})
@@ -77,6 +84,7 @@ sub onResponseReceived(event)
             m.navBar.visible = true
             m.global.screenManager.callFunc("goToScreen",{type:"LoginScreen", data:m.movies})
           end if
+          m.spinner.control = "stop"
         else
           theTask = "MoviesTask"
           if "Popular Television" = m.genres[m.fetchedCount].name then theTask = "TVTask"
