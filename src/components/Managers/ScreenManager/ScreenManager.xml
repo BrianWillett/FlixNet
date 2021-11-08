@@ -4,6 +4,7 @@
     <interface>
         <function name="goToScreen"/>
         <function name="goBack"/>
+        <function name="getCurrentScreen"/>
     </interface>
     <children>
         

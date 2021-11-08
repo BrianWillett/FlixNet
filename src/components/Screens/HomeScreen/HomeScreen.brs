@@ -6,6 +6,7 @@ sub init()
     m.list.observeField("rowItemFocused","onFocus")
     m.watchBtn = m.top.findNode("watch")
     m.infoBtn = m.top.findNode("info")
+    m.navBar = m.top.findNode("NavBar")
     m.btnFocusColor = "#FFFFFF"
     m.buttonUnfocusColor = "#112244"
     m.movieSelectedId = invalid
@@ -32,19 +33,61 @@ end sub
 
 sub displayGenres(genres)
     topNode = createObject("roSGNode","ContentNode")
+    topNode = addPopularToTop(topNode, genres)
     for each genre in genres
+        if genre <> "Popular Movies" and genre <> "Popular Television"
+            rowNode = CreateObject("roSGNode","ContentNode")
+            rowNode.title = genre
+            rowNode.id = genres[genre].genreId
+            movies = genres[genre].movies
+            for i = 0 to movies.count() - 1 step 1
+                if invalid <> movies[i]
+                    movie = createObject("roSGNode","ContentNode")
+                    if invalid <> movies[i].id then movie.id = movies[i].id
+                    if invalid <> movies[i].title then movie.title = movies[i].title
+                    if invalid <> movies[i].release_date then movie.releaseDate = movies[i].release_date
+                    if invalid <> movies[i].vote_average then movie.rating = movies[i].vote_average.toStr()
+                    if invalid <> movies[i].overview then movie.description = movies[i].overview
+                    if invalid <> movies[i].poster_path then movie.HDPosterURL = getValueFromKey("mini_poster_base_url") +  movies[i].poster_path
+                    if invalid <> movies[i].backdrop_path then movie.SDPosterURL = getValueFromKey("backdrop_poster_base_url") + movies[i].backdrop_path
+                    rowNode.appendChild(movie)
+                end if
+            end for
+            topNode.appendChild(rowNode)
+        end if
+    end for
+    m.list.content = topNode
+    m.list.visible = true
+    m.list.setFocus(true)
+end sub
+
+function addPopularToTop(topNode, genres)
+    orderedGenres = createObject("roAssociativeArray")
+    pMovies = genres.lookup("Popular Movies")
+    pTV = genres.lookup("Popular Television")
+    orderedGenres.addReplace("Popular Movies", pMovies)
+    orderedGenres.addReplace("Popular Television", pTV)
+    for each genre in orderedGenres
         rowNode = CreateObject("roSGNode","ContentNode")
         rowNode.title = genre
-        rowNode.id = genres[genre].genreId
-        movies = genres[genre].movies
+        rowNode.id = orderedGenres[genre].genreId
+        movies = orderedGenres[genre].movies
         for i = 0 to movies.count() - 1 step 1
-            if invalid <> movies[i]
+            if invalid <> movies[i] and invalid <> movies[i].original_language and "en" = movies[i].original_language
                 movie = createObject("roSGNode","ContentNode")
                 if invalid <> movies[i].id then movie.id = movies[i].id
                 if invalid <> movies[i].title then movie.title = movies[i].title
+                if "Popular Television" = genre
+                    if invalid <> movies[i].name then movie.title = movies[i].name
+                    if invalid <> movies[i].first_air_date then movie.releaseDate = movies[i].first_air_date
+                end if
                 if invalid <> movies[i].release_date then movie.releaseDate = movies[i].release_date
                 if invalid <> movies[i].vote_average then movie.rating = movies[i].vote_average.toStr()
-                if invalid <> movies[i].overview then movie.description = movies[i].overview
+                if invalid <> movies[i].overview and "" <> movies[i].overview
+                    movie.description = movies[i].overview
+                else if "" = movies[i].overview
+                    movie.description = "No description given"
+                end if
                 if invalid <> movies[i].poster_path then movie.HDPosterURL = getValueFromKey("mini_poster_base_url") +  movies[i].poster_path
                 if invalid <> movies[i].backdrop_path then movie.SDPosterURL = getValueFromKey("backdrop_poster_base_url") + movies[i].backdrop_path
                 rowNode.appendChild(movie)
@@ -52,10 +95,8 @@ sub displayGenres(genres)
         end for
         topNode.appendChild(rowNode)
     end for
-    m.list.content = topNode
-    m.list.visible = true
-    m.list.setFocus(true)
-end sub
+    return topNode
+end function
 
 sub onFocus(event)
     movie = findMovieDetails(event.getData())
@@ -192,6 +233,20 @@ sub closeVideo()
     m.watchBtn.setFocus(true)
 end sub
 
+sub focusNavBar()
+    m.navBar.setFocus(true)
+    m.navBar.expanded= true
+end sub
+
+sub closeNavBar()
+    m.navBar.expanded = false
+    if invalid <> m.lastFocused
+        m.lastFocused.setFocus(true)
+    else
+        m.list.setFocus(true)
+    end if
+end sub
+
 function onKeyEvent(key as string, press as boolean) as boolean
     handled = false
     if press
@@ -200,6 +255,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
             handled = true
         else if "right" = key
             if m.watchBtn.isInFocusChain() then changeButtonFocus(m.infoBtn)
+            if m.navBar.isInFocusChain() then closeNavBar()
             handled = true
         else if "up" = key
             handled = true
@@ -212,6 +268,8 @@ function onKeyEvent(key as string, press as boolean) as boolean
             else if m.infoBtn.isInFocusChain()
                 m.lastFocused = m.infoBtn
                 m.global.screenManager.callFunc("goToScreen",{type:"InfoScreen",data:m.movieSelectedMovie})
+            else if m.navBar.isInFocusChain()
+                closeNavBar()
             end if
             handled = true
         else if "back" = key
@@ -221,6 +279,15 @@ function onKeyEvent(key as string, press as boolean) as boolean
                 changeButtonFocus()
             else if m.list.isInFocusChain()
                 m.global.screenManager.callFunc("goBack",{})
+            else if m.navBar.isInFocusChain()
+                closeNavBar()
+            end if
+            handled = true
+        else if "options" = key
+            if not m.navBar.isInFocusChain()
+                focusNavBar()
+            else
+                closeNavBar()
             end if
             handled = true
         end if

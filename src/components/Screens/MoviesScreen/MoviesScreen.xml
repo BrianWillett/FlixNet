@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="MoviesScreen" extends="Group">
+    <script type="text/brightscript" uri="MoviesScreen.brs" />
+    <interface>
+        <function name="onOpen"/>
+    </interface>
+    <children>
+        <Label id="label" text="MoviesScreen" translation="[200,200]"/>
+    </children>
+</component>

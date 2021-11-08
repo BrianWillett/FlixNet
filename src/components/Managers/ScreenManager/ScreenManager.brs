@@ -74,3 +74,7 @@ sub goBack(params)
         goToScreen({type:"ExitScreen"})
     end if
 end sub
+
+function getCurrentScreen()
+    return m.currentScreen
+end function

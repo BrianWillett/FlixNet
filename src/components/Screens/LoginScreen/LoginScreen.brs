@@ -237,7 +237,11 @@ function onKeyEvent(key as string, press as boolean) as boolean
             else if m.signUp.isInFocusChain()
                 requestRokuData()
             else if m.logIn.isInFocusChain()
-                if validateForm() then m.global.screenManager.callFunc("goToScreen",{type: "HomeScreen", data: m.data, closeCurrent: true})
+                if validateForm()
+                    if logIn()
+                        m.global.screenManager.callFunc("goToScreen",{type: "HomeScreen", data: m.data, closeCurrent: true})
+                    end if
+                end if
             end if
             handled = true
         else if "back" = key
