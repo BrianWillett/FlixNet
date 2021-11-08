@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="Spinner" extends="Group">
+    <script type="text/brightscript" uri="Spinner.brs" />
+    <interface>
+        <field id="control" type="string" onChange="handleSpinner" value="stop"/>
+        <field id="status" type="string" alias="statusMessage.text"/>
+        <field id="spinnerTranslation" type="array" alias="spinner.translation" />
+    </interface>
+    <children>
+        <Rectangle id="bg" width="1920" height="1080" color="#000000" />
+        <BusySpinner id="spinner" uri="pkg:/assets/images/spinner.png" translation="[885,465]"/>
+        <Label id="statusMessage" width="1920" translation="[0,630]" horizAlign="center" color="#FFFFFF">
+            <Font role="font" size="27" uri="pkg:/assets/fonts/Lato-Regular.ttf" />
+        </Label>
+    </children>
+</component>

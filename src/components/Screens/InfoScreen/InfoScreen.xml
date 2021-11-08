@@ -12,7 +12,7 @@
     </interface>
     <children>
         <Poster id="poster" width="1920" height="1080" />
-        <Poster id="gradient" width="1920" height="1080" uri="pkg:/assets/images/overlay_brand_darken.png"/>
+        <Poster id="gradient" width="1920" height="1080" uri="pkg:/assets/images/darken.png"/>
         <Poster id="moviePoster" width="500" height="700" translation="[1350,50]" />
         <Button id="watch" bgWidth="200" bgHeight="75" bgColor="#FFFFFF" text="Watch" textColor="#000000" translation="[1500,775]" />
         <Label id="movieTitle" translation="[100,50]" >
