@@ -40,7 +40,7 @@ sub changeIndex(delta)
     numOptions = children.count() - 1
 
     if 0 > m.index then m.index = 0
-    if numOptions < m.index then m.index = 3
+    if numOptions < m.index then m.index = numOptions
 
     yValue = 205
     m.top.dotTranslation = [10, (yValue + (m.index * 75))]
